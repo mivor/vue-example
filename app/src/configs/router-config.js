@@ -1,9 +1,9 @@
-import Hello from '../components/Hello';
+import Home from '../pages/Home';
 
 export default [
   {
     path: '/',
-    name: 'Hello',
-    component: Hello,
+    name: 'Home',
+    component: Home,
   },
 ];
