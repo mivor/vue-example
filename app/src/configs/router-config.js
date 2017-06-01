@@ -1,11 +1,9 @@
-import Hello from '@/components/Hello';
+import Hello from '../components/Hello';
 
-export default {
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello,
-    },
-  ],
-};
+export default [
+  {
+    path: '/',
+    name: 'Hello',
+    component: Hello,
+  },
+];
