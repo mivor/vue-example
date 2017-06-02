@@ -4,7 +4,8 @@
   "description": "Web API for the vue-example app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "babel-node main.js",
+    "start": "babel-node main.js --presets env,stage-2"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,10 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.10.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
