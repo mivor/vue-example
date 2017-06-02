@@ -9,13 +9,11 @@ app.use(bodyParser.json());
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
-
-	res.json({ message: 'hey! welcome to our api!' });	
-
+router.get('/', (req, res) => {
+  res.json({ message: 'hey! welcome to our api!' });
 });
 
 app.use('/api', router);
 
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log(`Magic happens on port ${port}`);
