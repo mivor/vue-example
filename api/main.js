@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
 
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hey! welcome to our api!' });	
 
 });
 

@@ -4,8 +4,8 @@
   "description": "Web API for the vue-example app",
   "main": "main.js",
   "scripts": {
-    "dev": "babel-node main.js",
-    "start": "babel-node main.js"
+    "dev": "nodemon main.js --exec babel-node",
+    "start": "nodemon main.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.1",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.11.0"
   }
 }
