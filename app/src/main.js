@@ -3,11 +3,11 @@ import Router from 'vue-router';
 import Vuex from 'vuex';
 import { sync } from 'vuex-router-sync';
 
-import App from './views/App';
-import routes from './configs/router-config';
-import VuexStore, { INITIALIZE } from './store/index';
+import VuexStore from '@/store/index';
+import App from '@/views/App';
+import routes from '@/configs/router-config';
 
-import './assets/styles.css';
+import '@/assets/styles.css';
 
 Vue.config.productionTip = false;
 
@@ -16,7 +16,7 @@ Vue.use(Router);
 
 const store = new Vuex.Store(VuexStore);
 const router = new Router({
-  routes,
+  routes: routes(store),
   mode: 'history',
 });
 
@@ -27,8 +27,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  created() {
-    this.$store.dispatch(INITIALIZE);
-  },
   render: h => h(App),
 });

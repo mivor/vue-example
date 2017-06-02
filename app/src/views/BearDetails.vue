@@ -19,11 +19,9 @@ import { SAVE_BEAR } from '../store/index';
 
 export default {
   name: 'bear-details',
-  props: ['id'],
   computed: {
     bear() {
-      const bearId = parseInt(this.id, 10);
-      const bear = this.$store.state.bears.find(x => x.id === bearId);
+      const bear = this.$store.state.openedBear;
       // clone bear to avoid editing the original bear
       return JSON.parse(JSON.stringify(bear));
     },
