@@ -13,10 +13,14 @@ const mockBears = [
 
 export default function (api) {
   api.get('/bears', (req, res) => {
-    res.json(mockBears);
+    const count = parseInt(req.query.count, 10);
+
+    if (count) res.json(mockBears.slice(0, count));
+    else res.json(mockBears);
   });
   api.get('/bear/:id', (req, res) => {
     const bearId = parseInt(req.params.id, 10);
+
     res.json(mockBears.find(x => x.id === bearId));
   });
 }
