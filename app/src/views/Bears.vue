@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .selected {
   background-color: #CFD8DC !important;
   color: white;
