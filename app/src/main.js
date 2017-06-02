@@ -5,7 +5,7 @@ import { sync } from 'vuex-router-sync';
 
 import App from './views/App';
 import routes from './configs/router-config';
-import VuexStore from './store/index';
+import VuexStore, { INITIALIZE } from './store/index';
 
 import './assets/styles.css';
 
@@ -26,5 +26,8 @@ new Vue({
   el: '#app',
   router,
   store,
+  created() {
+    this.$store.dispatch(INITIALIZE);
+  },
   render: h => h(App),
 });
