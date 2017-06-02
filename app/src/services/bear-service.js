@@ -1,9 +1,13 @@
-import mockBears from './mock-bears';
+import axios from 'axios';
 
-function getBears() {
-  return Promise.resolve(mockBears);
-}
+const http = axios.create({
+  baseURL: 'http://localhost:3000/api/',
+  timeout: 1000,
+});
 
 export default {
-  getBears,
+  async getBears() {
+    const res = await http.get('bears');
+    return res.data;
+  },
 };
