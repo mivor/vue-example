@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>My Bears</h2>
-    <AddBear />
+    <AddBear @add="add($event.name)"/>
     <ul class="bears">
       <li v-for="bear in bears"
         :key="bear.id"
@@ -9,24 +9,22 @@
         @click="select(bear)">
         <span class="badge">{{bear.id}}</span>
         <span>{{bear.name}}</span>
-        <button class="delete" @click.stop="remove(bear)">x</button>
+        <button class="delete" @click.stop="remove(bear.id)">x</button>
       </li>
     </ul>
-    <div v-if="selectedBear">
-      <h2>{{ selectedBear.name.toUpperCase() }} is my bear</h2>
-      <button @click="open()">View Details</button>
-    </div>
+    <BearPreview :bear="selectedBear" @open="open()" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import { REMOVE_BEAR } from '../store/index';
+import { ADD_BEAR, REMOVE_BEAR } from '../store/index';
 import AddBear from '../components/AddBear';
+import BearPreview from '../components/BearPreview';
 
 export default {
   name: 'bears',
-  components: { AddBear },
+  components: { AddBear, BearPreview },
   data() {
     return {
       selectedBear: null,
@@ -42,6 +40,9 @@ export default {
     },
     open() {
       this.$router.push({ name: 'bear-details', params: { id: this.selectedBear.id } });
+    },
+    add(name) {
+      this.$store.dispatch(ADD_BEAR, { bear: { name } });
     },
     async remove(id) {
       await this.$store.dispatch(REMOVE_BEAR, { id });
