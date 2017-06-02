@@ -3,6 +3,7 @@
     <h2>My Bears</h2>
     <ul class="bears">
       <li v-for="bear in bears"
+        :key="bear.id"
         :class="{ 'selected': selectedBear == bear }"
         @click="select(bear)">
         <span class="badge">{{bear.id}}</span> {{bear.name}}
