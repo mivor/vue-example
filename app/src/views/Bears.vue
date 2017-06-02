@@ -1,6 +1,10 @@
 <template>
   <div>
     <h2>My Bears</h2>
+    <div>
+      <label>Bear name:</label> <input v-model="bearName" />
+      <button @click="add()">Add</button>
+    </div>
     <ul class="bears">
       <li v-for="bear in bears"
         :key="bear.id"
@@ -18,12 +22,14 @@
 
 <script>
 import { mapState } from 'vuex';
+import { ADD_BEAR } from '../store/index';
 
 export default {
   name: 'bears',
   data() {
     return {
       selectedBear: null,
+      bearName: null,
     };
   },
   computed: {
@@ -35,6 +41,11 @@ export default {
     },
     open() {
       this.$router.push({ name: 'bear-details', params: { id: this.selectedBear.id } });
+    },
+    async add() {
+      await this.$store.dispatch(ADD_BEAR, { bear: { name: this.bearName } });
+      this.bearName = null;
+      this.selectedBear = null;
     },
   },
 };

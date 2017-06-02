@@ -3,10 +3,12 @@ import BearService from '../services/bear-service';
 // actions
 export const INITIALIZE = 'INITIALIZE';
 export const SAVE_BEAR = 'SAVE_BEAR';
+export const ADD_BEAR = 'ADD_BEAR';
 
 // mutations
 export const INITIALIZED = 'INITIALIZED';
 export const BEAR_SAVED = 'BEAR_SAVED';
+export const BEAR_ADDED = 'BEAR_ADDED';
 
 function handleErrors(error) {
   // TODO: error handling
@@ -36,6 +38,16 @@ export default {
         handleErrors(error);
       }
     },
+    async [ADD_BEAR]({ commit }, payload) {
+      try {
+        console.log(payload.bear);
+        const bear = await BearService.create(payload.bear);
+        console.log(bear);
+        commit(BEAR_ADDED, { bear });
+      } catch (error) {
+        handleErrors(error);
+      }
+    },
   },
   mutations: {
     [INITIALIZED](state, payload) {
@@ -44,6 +56,9 @@ export default {
     [BEAR_SAVED](state, payload) {
       const bear = state.bears.find(x => x.id === payload.bear.id);
       bear.name = payload.bear.name;
+    },
+    [BEAR_ADDED](state, payload) {
+      state.bears.push(payload.bear);
     },
   },
   strict: true,
