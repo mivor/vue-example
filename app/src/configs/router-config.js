@@ -16,6 +16,7 @@ export default [
     component: Dashboard,
   },
   {
+    name: 'bear-details',
     path: '/details/:id',
     component: BearDetails,
     props: true,

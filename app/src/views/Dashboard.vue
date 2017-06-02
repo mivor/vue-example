@@ -2,11 +2,11 @@
   <div>
     <h3>Top Bears</h3>
     <div class="grid grid-pad">
-      <div v-for="bear in bears" class="col-1-4">
+      <router-link v-for="bear in bears" :to="{ name: 'bear-details', params: { id: bear.id }}" class="col-1-4">
         <div class="module bear">
           <h4>{{bear.name}}</h4>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
