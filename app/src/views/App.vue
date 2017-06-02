@@ -9,19 +9,13 @@
         <span class="badge">{{bear.id}}</span> {{bear.name}}
       </li>
     </ul>
-    <div v-if="selectedBear">
-      <h2>{{selectedBear.name}} details</h2>
-      <div>
-        <label>id: </label>{{selectedBear.id}}</div>
-      <div>
-        <label>name: </label>
-        <input v-model="selectedBear.name" placeholder="name">
-      </div>
-    </div>
+    <BearDetails :bear="selectedBear" />
   </div>
 </template>
 
 <script>
+import BearDetails from '../components/BearDetails';
+
 const testBears = [
   { id: 11, name: 'Jammy' },
   { id: 12, name: 'Charlie' },
@@ -37,6 +31,7 @@ const testBears = [
 
 export default {
   name: 'app',
+  components: { BearDetails },
   data() {
     return {
       title: 'Bears are Awesome',
