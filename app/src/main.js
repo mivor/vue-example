@@ -7,6 +7,8 @@ import App from './views/App';
 import routes from './configs/router-config';
 import VuexStore from './store/index';
 
+import './assets/styles.css';
+
 Vue.config.productionTip = false;
 
 Vue.use(Vuex);
