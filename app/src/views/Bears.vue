@@ -9,7 +9,7 @@
       </li>
     </ul>
     <div v-if="selectedBear">
-      <h2>{{selectedBear.name | uppercase }} is my bear</h2>
+      <h2>{{ selectedBear.name.toUpperCase() }} is my bear</h2>
       <button @click="open()">View Details</button>
     </div>
   </div>
