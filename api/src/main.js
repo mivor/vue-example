@@ -1,11 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import registerBearController from './controllers/bear-controller';
 
 const app = express();
 const port = process.env.PORT || 3000;
 const router = express.Router();
+
+router.all('*', cors());
 
 registerBearController(router);
 
