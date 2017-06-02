@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import { SAVE_BEAR } from '../store/index';
+import { ns, SAVE } from '@/modules/bear-module';
 
 export default {
   name: 'bear-details',
   computed: {
     bear() {
-      const bear = this.$store.state.openedBear;
+      const bear = this.$store.state.bear.openedBear;
       // clone bear to avoid editing the original bear
       return JSON.parse(JSON.stringify(bear));
     },
@@ -31,7 +31,7 @@ export default {
       this.$router.go(-1);
     },
     async save() {
-      await this.$store.dispatch(SAVE_BEAR, { bear: this.bear });
+      await this.$store.dispatch(ns(SAVE), { bear: this.bear });
       this.goBack();
     },
   },

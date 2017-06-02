@@ -1,19 +1,25 @@
 import BearService from '@/services/bear-service';
 
+export const NS = 'bear';
+
 // actions
 export const LOAD_BEARS = 'LOAD_BEARS';
 export const LOAD_DASHBOARD = 'LOAD_DASHBOARD';
 
-export const OPEN_BEAR = 'OPEN_BEAR';
-export const SAVE_BEAR = 'SAVE_BEAR';
-export const ADD_BEAR = 'ADD_BEAR';
-export const REMOVE_BEAR = 'REMOVE_BEAR';
+export const OPEN = 'OPEN';
+export const SAVE = 'SAVE';
+export const ADD = 'ADD';
+export const REMOVE = 'REMOVE';
 
 // mutations
-export const BEAR_OPENED = 'BEAR_OPENED';
-export const BEAR_SAVED = 'BEAR_SAVED';
-export const BEAR_ADDED = 'BEAR_ADDED';
-export const BEAR_REMOVED = 'BEAR_REMOVED';
+export const OPENED = 'OPENED';
+export const SAVED = 'SAVED';
+export const ADDED = 'ADDED';
+export const REMOVED = 'REMOVED';
+
+export function ns(name) {
+  return `${NS}/${name}`;
+}
 
 function handleErrors(error) {
   // TODO: error handling
@@ -25,13 +31,16 @@ function addBear(state, commit, bear) {
   const exists = state.bears.find(x => x.id === bear.id);
   if (exists) return;
 
-  commit(BEAR_ADDED, { bear });
+  commit(ADDED, { bear });
 }
 
 export default {
-  state: {
-    bears: [],
-    openedBear: null,
+  namespaced: true,
+  state() {
+    return {
+      bears: [],
+      openedBear: null,
+    };
   },
   actions: {
     LOAD_BEARS: async ({ state, commit }) => {
@@ -52,64 +61,62 @@ export default {
         handleErrors(error);
       }
     },
-    OPEN_BEAR: async ({ state, commit }, payload) => {
+    OPEN: async ({ state, commit }, payload) => {
       try {
         let bear = state.bears.find(x => x.id === payload.id);
         if (!bear) {
           bear = await BearService.getBear(payload.id);
           addBear(state, commit, bear);
         }
-        commit(BEAR_OPENED, { bear });
+        commit(OPENED, { bear });
       } catch (error) {
         handleErrors(error);
       }
     },
-    SAVE_BEAR: async ({ commit }, payload) => {
+    SAVE: async ({ commit }, payload) => {
       try {
         const bear = payload.bear;
         await BearService.update(bear);
-        commit(BEAR_SAVED, { bear });
+        commit(SAVED, { bear });
       } catch (error) {
         handleErrors(error);
       }
     },
-    ADD_BEAR: async (ctx, payload) => {
+    ADD: async ({ commit }, payload) => {
       try {
         const bear = await BearService.create(payload.bear);
-        ctx.commit(BEAR_ADDED, { bear });
-        console.log(ctx);
+        commit(ADDED, { bear });
       } catch (error) {
         handleErrors(error);
       }
     },
-    REMOVE_BEAR: async ({ commit }, payload) => {
+    REMOVE: async ({ commit }, payload) => {
       try {
         await BearService.delete(payload.id);
-        commit(BEAR_REMOVED, payload);
+        commit(REMOVED, payload);
       } catch (error) {
         handleErrors(error);
       }
     },
   },
   mutations: {
-    BEAR_OPENED: (state, payload) => {
+    OPENED: (state, payload) => {
       state.openedBear = payload.bear;
     },
-    BEAR_SAVED: (state, payload) => {
+    SAVED: (state, payload) => {
       const bear = state.bears.find(x => x.id === payload.bear.id);
       bear.name = payload.bear.name;
     },
-    BEAR_ADDED: (state, payload) => {
+    ADDED: (state, payload) => {
       const bear = state.bears.find(x => x.id === payload.bear.id);
       if (bear) return;
 
       state.bears.push(payload.bear);
     },
-    BEAR_REMOVED: (state, payload) => {
+    REMOVED: (state, payload) => {
       const bear = state.bears.find(x => x.id === payload.id);
       const index = state.bears.indexOf(bear);
       state.bears.splice(index, 1);
     },
   },
-  strict: true,
 };

@@ -19,7 +19,7 @@ export default {
   name: 'dashboard',
   computed: {
     bears() {
-      return this.$store.state.bears.slice(0, 4);
+      return this.$store.state.bear.bears.slice(0, 4);
     },
   },
 };
