@@ -1,10 +1,24 @@
 <template>
-  <h3>My Dashboard</h3>
+  <div>
+    <h3>Top Bears</h3>
+    <div class="grid grid-pad">
+      <div v-for="bear in bears" class="col-1-4">
+        <div class="module bear">
+          <h4>{{bear.name}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-
+  name: 'dashboard',
+  computed: {
+    bears() {
+      return this.$store.state.bears.slice(1, 5);
+    },
+  },
 };
 </script>
 
