@@ -8,17 +8,14 @@
         <span class="badge">{{bear.id}}</span> {{bear.name}}
       </li>
     </ul>
-    <BearDetails :bear="selectedBear" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import BearDetails from '../components/BearDetails';
 
 export default {
   name: 'bears',
-  components: { BearDetails },
   data() {
     return {
       selectedBear: null,

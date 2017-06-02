@@ -13,8 +13,14 @@
 
 <script>
 export default {
-  name: 'hero-details',
-  props: ['bear'],
+  name: 'bear-details',
+  props: ['id'],
+  computed: {
+    bear() {
+      const bearId = parseInt(this.id, 10);
+      return this.$store.state.bears.find(x => x.id === bearId);
+    },
+  },
 };
 </script>
 

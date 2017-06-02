@@ -1,5 +1,6 @@
 import Bears from '@/views/Bears';
 import Dashboard from '@/views/Dashboard';
+import BearDetails from '@/views/BearDetails';
 
 export default [
   {
@@ -13,5 +14,10 @@ export default [
   {
     path: '/dashboard',
     component: Dashboard,
+  },
+  {
+    path: '/details/:id',
+    component: BearDetails,
+    props: true,
   },
 ];

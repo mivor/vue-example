@@ -5,7 +5,7 @@ export const INITIALIZED = 'INITIALIZED';
 
 export default {
   state: {
-    bears: null,
+    bears: [],
   },
   actions: {
     async [INITIALIZE]({ commit }) {
