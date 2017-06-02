@@ -8,6 +8,10 @@
         <span class="badge">{{bear.id}}</span> {{bear.name}}
       </li>
     </ul>
+    <div v-if="selectedBear">
+      <h2>{{selectedBear.name | uppercase }} is my bear</h2>
+      <button @click="open()">View Details</button>
+    </div>
   </div>
 </template>
 
@@ -27,6 +31,9 @@ export default {
   methods: {
     select(bear) {
       this.selectedBear = bear;
+    },
+    open() {
+      this.$router.push({ name: 'bear-details', params: { id: this.selectedBear.id } });
     },
   },
 };
