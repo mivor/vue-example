@@ -23,7 +23,7 @@ export default {
     bears: [],
   },
   actions: {
-    async [INITIALIZE]({ commit }) {
+    INITIALIZE: async ({ commit }) => {
       try {
         const bears = await BearService.getBears();
         commit(INITIALIZED, { bears });
@@ -31,7 +31,7 @@ export default {
         handleErrors(error);
       }
     },
-    async [SAVE_BEAR]({ commit }, payload) {
+    SAVE_BEAR: async ({ commit }, payload) => {
       try {
         const bear = payload.bear;
         await BearService.update(bear);
@@ -40,7 +40,7 @@ export default {
         handleErrors(error);
       }
     },
-    async [ADD_BEAR]({ commit }, payload) {
+    ADD_BEAR: async ({ commit }, payload) => {
       try {
         const bear = await BearService.create(payload.bear);
         commit(BEAR_ADDED, { bear });
@@ -48,7 +48,7 @@ export default {
         handleErrors(error);
       }
     },
-    async [REMOVE_BEAR]({ commit }, payload) {
+    REMOVE_BEAR: async ({ commit }, payload) => {
       try {
         await BearService.delete(payload.id);
         commit(BEAR_REMOVED, payload);
@@ -58,17 +58,17 @@ export default {
     },
   },
   mutations: {
-    [INITIALIZED](state, payload) {
+    INITIALIZED: (state, payload) => {
       state.bears = payload.bears;
     },
-    [BEAR_SAVED](state, payload) {
+    BEAR_SAVED: (state, payload) => {
       const bear = state.bears.find(x => x.id === payload.bear.id);
       bear.name = payload.bear.name;
     },
-    [BEAR_ADDED](state, payload) {
+    BEAR_ADDED: (state, payload) => {
       state.bears.push(payload.bear);
     },
-    [BEAR_REMOVED](state, payload) {
+    BEAR_REMOVED: (state, payload) => {
       const bear = state.bears.find(x => x.id === payload.id);
       const index = state.bears.indexOf(bear);
       state.bears.splice(index, 1);
