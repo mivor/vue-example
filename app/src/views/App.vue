@@ -1,16 +1,14 @@
 <template>
   <div id="app">
     <h1>{{title}}</h1>
-    <Bears />
+    <router-link to="/bears">Bears</router-link>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Bears from './Bears';
-
 export default {
   name: 'app',
-  components: { Bears },
   data() {
     return {
       title: 'Bears are Awesome',
