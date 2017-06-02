@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BearDetails from '../components/BearDetails';
 
 export default {
@@ -26,7 +27,7 @@ export default {
     };
   },
   computed: {
-    bears() { return this.$store.state.bears; },
+    ...mapState(['bears']),
   },
   methods: {
     select(bear) {
