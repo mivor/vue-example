@@ -4,8 +4,10 @@
   "description": "Web API for the vue-example app",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon main.js --exec babel-node",
-    "start": "nodemon main.js --exec babel-node"
+    "dev": "nodemon src/main.js --exec babel-node",
+    "start": "nodemon src/main.js --exec babel-node",
+    "build": "babel src -d dist",
+    "serve": "node dist/main.js"
   },
   "author": "",
   "license": "ISC",
