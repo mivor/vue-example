@@ -3,15 +3,15 @@
     <h1>{{title}}</h1>
     <h2>My Bears</h2>
     <ul class="bears">
-      <li v-for="bear in bears">
+      <li v-for="bear in bears" @click="select(bear)">
         <span class="badge">{{bear.id}}</span> {{bear.name}}
       </li>
     </ul>
-    <h2>{{bear.name}} details</h2>
-    <div><label>id: </label>{{bear.id}}</div>
+    <h2>{{selectedBear.name}} details</h2>
+    <div><label>id: </label>{{selectedBear.id}}</div>
     <div>
       <label>name: </label>
-      <input v-model="bear.name" placeholder="name">
+      <input v-model="selectedBear.name" placeholder="name">
       </div>
   </div>
 </template>
@@ -36,11 +36,16 @@ export default {
     return {
       title: 'Bears are Awesome',
       bears: testBears,
-      bear: {
+      selectedBear: {
         id: 1,
         name: 'Ursus',
       },
     };
+  },
+  methods: {
+    select(bear) {
+      this.selectedBear = bear;
+    },
   },
 };
 </script>
