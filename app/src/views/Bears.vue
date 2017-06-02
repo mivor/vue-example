@@ -10,7 +10,9 @@
         :key="bear.id"
         :class="{ 'selected': selectedBear == bear }"
         @click="select(bear)">
-        <span class="badge">{{bear.id}}</span> {{bear.name}}
+        <span class="badge">{{bear.id}}</span>
+        <span>{{bear.name}}</span>
+        <button class="delete" @click.stop="remove(bear)">x</button>
       </li>
     </ul>
     <div v-if="selectedBear">
@@ -22,7 +24,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { ADD_BEAR } from '../store/index';
+import { ADD_BEAR, REMOVE_BEAR } from '../store/index';
 
 export default {
   name: 'bears',
@@ -45,6 +47,10 @@ export default {
     async add() {
       await this.$store.dispatch(ADD_BEAR, { bear: { name: this.bearName } });
       this.bearName = null;
+      this.selectedBear = null;
+    },
+    async remove(id) {
+      await this.$store.dispatch(REMOVE_BEAR, { id });
       this.selectedBear = null;
     },
   },
@@ -104,5 +110,12 @@ export default {
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+button.delete {
+  float:right;
+  margin-top: 2px;
+  margin-right: .8em;
+  background-color: gray !important;
+  color:white;
 }
 </style>
