@@ -17,6 +17,7 @@ Vue.use(Router);
 const store = new Vuex.Store(VuexStore);
 const router = new Router({
   routes,
+  mode: 'history',
 });
 
 sync(store, router);
