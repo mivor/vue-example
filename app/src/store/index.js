@@ -1,4 +1,4 @@
-import mockBears from './mock-bears';
+import BearService from '../services/bear-service';
 
 export const INITIALIZE = 'INITIALIZE';
 export const INITIALIZED = 'INITIALIZED';
@@ -8,8 +8,9 @@ export default {
     bears: null,
   },
   actions: {
-    [INITIALIZE]({ commit }) {
-      commit(INITIALIZED, { bears: mockBears });
+    async [INITIALIZE]({ commit }) {
+      const bears = await BearService.getBears();
+      commit(INITIALIZED, { bears });
     },
   },
   mutations: {
