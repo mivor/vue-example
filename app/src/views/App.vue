@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <h1>{{title}}</h1>
-    <router-link to="/bears">Bears</router-link>
+    <nav>
+      <router-link to="/dashboard">Dashboard</router-link>
+      <router-link to="/bears">Bears</router-link>
+    </nav>
     <router-view />
   </div>
 </template>
