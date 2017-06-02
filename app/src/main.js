@@ -5,7 +5,7 @@ import { sync } from 'vuex-router-sync';
 
 import VuexStore from '@/store/index';
 import App from '@/views/App';
-import routes from '@/configs/router-config';
+import initRoutes from '@/configs/routesConfig';
 
 import '@/assets/styles.css';
 
@@ -16,7 +16,7 @@ Vue.use(Router);
 
 const store = new Vuex.Store(VuexStore);
 const router = new Router({
-  routes: routes(store),
+  routes: initRoutes(store),
   mode: 'history',
 });
 
