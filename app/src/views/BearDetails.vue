@@ -10,22 +10,31 @@
       <input v-model="bear.name" placeholder="name">
     </div>
     <button @click="goBack()">Back</button>
+    <button @click="save()">Save</button>
   </div>
 </template>
 
 <script>
+import { SAVE_BEAR } from '../store/index';
+
 export default {
   name: 'bear-details',
   props: ['id'],
   computed: {
     bear() {
       const bearId = parseInt(this.id, 10);
-      return this.$store.state.bears.find(x => x.id === bearId);
+      const bear = this.$store.state.bears.find(x => x.id === bearId);
+      // clone bear to avoid editing the original bear
+      return JSON.parse(JSON.stringify(bear));
     },
   },
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    async save() {
+      await this.$store.dispatch(SAVE_BEAR, { bear: this.bear });
+      this.goBack();
     },
   },
 };
