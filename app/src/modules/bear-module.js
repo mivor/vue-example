@@ -1,6 +1,8 @@
 import BearService from '@/services/bear-service';
+import createNs from '@/utils/ns';
 
 export const NS = 'bear';
+export const ns = createNs(NS);
 
 // actions
 export const LOAD_BEARS = 'LOAD_BEARS';
@@ -16,10 +18,6 @@ export const OPENED = 'OPENED';
 export const SAVED = 'SAVED';
 export const ADDED = 'ADDED';
 export const REMOVED = 'REMOVED';
-
-export function ns(name) {
-  return `${NS}/${name}`;
-}
 
 function handleErrors(error) {
   // TODO: error handling
