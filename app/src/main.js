@@ -5,8 +5,8 @@ import { sync } from 'vuex-router-sync';
 
 import App from '@/views/App';
 import initRoutes from '@/configs/routesConfig';
-import { init } from '@/modules/router-module';
-import BearModule, { NS } from '@/modules/bear-module';
+import init from '@/modules/router-module';
+import BearModule, { namespace } from '@/modules/bear-module';
 
 import '@/assets/styles.css';
 
@@ -17,7 +17,7 @@ Vue.use(Router);
 
 const store = new Vuex.Store({
   modules: {
-    [NS]: BearModule,
+    [namespace]: BearModule,
   },
   strict: true,
 });

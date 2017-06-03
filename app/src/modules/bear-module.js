@@ -1,17 +1,17 @@
 import BearService from '@/services/bear-service';
 import createNs from '@/utils/ns';
 
-export const NS = 'bear';
-export const ns = createNs(NS);
+export const namespace = 'bear';
+const ns = createNs(namespace);
 
 // actions
-export const LOAD_BEARS = 'LOAD_BEARS';
-export const LOAD_DASHBOARD = 'LOAD_DASHBOARD';
+export const LOAD_BEARS = ns('LOAD_BEARS');
+export const LOAD_DASHBOARD = ns('LOAD_DASHBOARD');
 
-export const OPEN = 'OPEN';
-export const SAVE = 'SAVE';
-export const ADD = 'ADD';
-export const REMOVE = 'REMOVE';
+export const OPEN = ns('OPEN');
+export const SAVE = ns('SAVE');
+export const ADD = ns('ADD');
+export const REMOVE = ns('REMOVE');
 
 // mutations
 export const OPENED = 'OPENED';

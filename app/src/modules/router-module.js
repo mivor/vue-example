@@ -1,11 +1,11 @@
 import createNs from '@/utils/ns';
 
-export const NS = 'router';
-export const ns = createNs(NS);
+export const namespace = 'router';
+const ns = createNs(namespace);
 
-export const PUSH = 'PUSH';
-export const REPLACE = 'REPLACE';
-export const GO = 'GO';
+export const PUSH = ns('PUSH');
+export const REPLACE = ns('REPLACE');
+export const GO = ns('GO');
 
 function create(router) {
   return {
@@ -22,7 +22,7 @@ function create(router) {
   };
 }
 
-export const init = (store, router) => {
-  store.registerModule(NS, create(router));
+export default (store, router) => {
+  store.registerModule(namespace, create(router));
 };
 

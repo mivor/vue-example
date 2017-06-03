@@ -1,4 +1,4 @@
-import { ns, LOAD_BEARS, LOAD_DASHBOARD, OPEN } from '@/modules/bear-module';
+import { LOAD_BEARS, LOAD_DASHBOARD, OPEN } from '@/modules/bear-module';
 
 import Bears from '@/views/Bears';
 import Dashboard from '@/views/Dashboard';
@@ -13,7 +13,7 @@ export default store => [
     path: '/bears',
     component: Bears,
     beforeEnter: (to, from, next) => {
-      store.dispatch(ns(LOAD_BEARS));
+      store.dispatch(LOAD_BEARS);
       next();
     },
   },
@@ -21,7 +21,7 @@ export default store => [
     path: '/dashboard',
     component: Dashboard,
     beforeEnter: (to, from, next) => {
-      store.dispatch(ns(LOAD_DASHBOARD));
+      store.dispatch(LOAD_DASHBOARD);
       next();
     },
   },
@@ -30,7 +30,7 @@ export default store => [
     path: '/details/:id',
     component: BearDetails,
     beforeEnter: (to, from, next) => {
-      store.dispatch(ns(OPEN), { id: to.params.id });
+      store.dispatch(OPEN, { id: to.params.id });
       next();
     },
   },

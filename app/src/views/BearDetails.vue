@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import { ns as nsBear, SAVE } from '@/modules/bear-module';
-import { ns as nsRouter, GO } from '@/modules/router-module';
+import { SAVE } from '@/modules/bear-module';
+import { GO } from '@/modules/router-module';
 
 export default {
   name: 'bear-details',
@@ -29,10 +29,10 @@ export default {
   },
   methods: {
     goBack() {
-      this.$store.dispatch(nsRouter(GO), -1);
+      this.$store.dispatch(GO, -1);
     },
     async save() {
-      await this.$store.dispatch(nsBear(SAVE), { bear: this.bear });
+      await this.$store.dispatch(SAVE, { bear: this.bear });
       this.goBack();
     },
   },
