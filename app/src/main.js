@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Vuex from 'vuex';
-import { sync } from 'vuex-router-sync';
+import { sync as addRoute } from 'vuex-router-sync';
 
 import App from '@/views/App';
 import initRoutes from '@/configs/routesConfig';
-import init from '@/modules/router-module';
-import BearModule, { namespace } from '@/modules/bear-module';
+import addRouter from '@/modules/router-module';
+import BearModule from '@/modules/bear-module';
 
 import '@/assets/styles.css';
 
@@ -17,7 +17,7 @@ Vue.use(Router);
 
 const store = new Vuex.Store({
   modules: {
-    [namespace]: BearModule,
+    ...BearModule,
   },
   strict: true,
 });
@@ -26,8 +26,8 @@ const router = new Router({
   mode: 'history',
 });
 
-init(store, router);
-sync(store, router);
+addRouter(store, router);
+addRoute(store, router);
 
 /* eslint-disable no-new */
 new Vue({

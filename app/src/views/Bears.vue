@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { namespace, ADD, REMOVE } from '@/modules/bear-module';
+import { name as BearModule, ADD, REMOVE } from '@/modules/bear-module';
 import { PUSH } from '@/modules/router-module';
 
 import AddBear from '@/components/AddBear';
@@ -34,7 +34,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(namespace, ['bears']),
+    ...mapState(BearModule, ['bears']),
   },
   methods: {
     select(bear) {

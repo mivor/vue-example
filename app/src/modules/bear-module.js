@@ -1,17 +1,17 @@
 import BearService from '@/services/bear-service';
-import createNs from '@/utils/ns';
+import createNS from '@/utils/ns';
 
-export const namespace = 'bear';
-const ns = createNs(namespace);
+export const name = 'bear';
+const _ = createNS(name);
 
 // actions
-export const LOAD_BEARS = ns('LOAD_BEARS');
-export const LOAD_DASHBOARD = ns('LOAD_DASHBOARD');
+export const LOAD_BEARS = _('LOAD_BEARS');
+export const LOAD_DASHBOARD = _('LOAD_DASHBOARD');
 
-export const OPEN = ns('OPEN');
-export const SAVE = ns('SAVE');
-export const ADD = ns('ADD');
-export const REMOVE = ns('REMOVE');
+export const OPEN = _('OPEN');
+export const SAVE = _('SAVE');
+export const ADD = _('ADD');
+export const REMOVE = _('REMOVE');
 
 // mutations
 export const OPENED = 'OPENED';
@@ -32,7 +32,7 @@ function addBear(state, commit, bear) {
   commit(ADDED, { bear });
 }
 
-export default {
+const module = {
   namespaced: true,
   state() {
     return {
@@ -117,4 +117,8 @@ export default {
       state.bears.splice(index, 1);
     },
   },
+};
+
+export default {
+  [name]: module,
 };
