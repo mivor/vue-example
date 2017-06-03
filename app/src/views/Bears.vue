@@ -18,7 +18,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import { ns, NS, ADD, REMOVE } from '@/modules/bear-module';
+import { ns as nsBear, ADD, REMOVE } from '@/modules/bear-module';
+import { ns as nsRouter, PUSH } from '@/modules/router-module';
+
 import AddBear from '@/components/AddBear';
 import BearPreview from '@/components/BearPreview';
 
@@ -32,20 +34,20 @@ export default {
     };
   },
   computed: {
-    ...mapState(NS, ['bears']),
+    ...mapState(nsBear(''), ['bears']),
   },
   methods: {
     select(bear) {
       this.selectedBear = bear;
     },
     open() {
-      this.$router.push({ name: 'bear-details', params: { id: this.selectedBear.id } });
+      this.$store.dispatch(nsRouter(PUSH), { name: 'bear-details', params: { id: this.selectedBear.id } });
     },
     add(name) {
-      this.$store.dispatch(ns(ADD), { bear: { name } });
+      this.$store.dispatch(nsBear(ADD), { bear: { name } });
     },
     async remove(id) {
-      await this.$store.dispatch(ns(REMOVE), { id });
+      await this.$store.dispatch(nsBear(REMOVE), { id });
       this.selectedBear = null;
     },
   },
